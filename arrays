@@ -1,0 +1,100 @@
+public class ArraysProblems {
+
+    // 1. LeetCode 1 - Two Sum
+    static int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{};
+    }
+
+    // 2. LeetCode 26 - Remove Duplicates from Sorted Array
+    static int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+        int index = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[index++] = nums[i];
+            }
+        }
+        return index;
+    }
+
+    // 3. LeetCode 27 - Remove Element
+    static int removeElement(int[] nums, int val) {
+        int index = 0;
+        for (int num : nums) {
+            if (num != val) {
+                nums[index++] = num;
+            }
+        }
+        return index;
+    }
+
+    // 4. LeetCode 53 - Maximum Subarray
+    static int maxSubArray(int[] nums) {
+        int currSum = nums[0];
+        int maxSum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            currSum = Math.max(nums[i], currSum + nums[i]);
+            maxSum = Math.max(maxSum, currSum);
+        }
+        return maxSum;
+    }
+
+    // 5. LeetCode 66 - Plus One
+    static int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+        }
+        int[] result = new int[digits.length + 1];
+        result[0] = 1;
+        return result;
+    }
+
+    // 6. LeetCode 88 - Merge Sorted Array
+    static void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1, j = n - 1, k = m + n - 1;
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k--] = nums1[i--];
+            } else {
+                nums1[k--] = nums2[j--];
+            }
+        }
+        while (j >= 0) {
+            nums1[k--] = nums2[j--];
+        }
+    }
+
+    // 7. LeetCode 121 - Best Time to Buy and Sell Stock
+    static int maxProfit(int[] prices) {
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int price : prices) {
+            if (price < minPrice) {
+                minPrice = price;
+            } else if (price - minPrice > maxProfit) {
+                maxProfit = price - minPrice;
+            }
+        }
+        return maxProfit;
+    }
+
+    // 8. LeetCode 136 - Single Number
+    static int singleNumber(int[] nums) {
+        int result = 0;
+        for (int num : nums) {
+            result ^= num;
+        }
+        return result;
+    }
+}
