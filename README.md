@@ -21,4 +21,4 @@ This repository contains my solutions to Data Structures and Algorithms problems
 - 30+ (Updating regularly)
 
 ## Author
-Prasanna Kumar
+Prasanna REDDY
